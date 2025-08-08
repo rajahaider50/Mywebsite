@@ -194,27 +194,24 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
-        // --- یہ آپ کی اصلی Firebase کنفیگریشن ہے ---
+        // --- Firebase Configuration (Correct) ---
         const firebaseConfig = {
             apiKey: "AIzaSyCeuM91kNEzB8dby76QSxCfpHgwWUCu9B4",
             authDomain: "vs-vote-4c319.firebaseapp.com",
             projectId: "vs-vote-4c319",
             storageBucket: "vs-vote-4c319.appspot.com",
             messagingSenderId: "472244917714",
-            appId: "1:472244917714:web:549e48df877db06916240b",
-            measurementId: "G-R83569X91N"
+            appId: "1:472244917714:web:549e48df877db06916240b"
         };
         
-        // Your Supabase Configuration (Replace with your own)
-        const supabaseConfig = {
-            url: "YOUR_SUPABASE_URL",
-            anonKey: "YOUR_SUPABASE_ANON_KEY"
-        };
+        // --- آپ کی اصلی سپابیس کی تفصیلات ---
+        const supabaseUrl = "https://nidnqqldmpwdyyvmxpkh.supabase.co";
+        const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pZG5xcWxkbXB3ZHl5dm14cGtoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ2NzIzNDgsImV4cCI6MjA3MDI0ODM0OH0.lT93XSIS7as75rs7y94Uy2RVHFSYQfMOUfKCYDUYOyU";
 
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const googleProvider = new firebase.auth.GoogleAuthProvider();
-        const supabase = supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey);
+        const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
         
         let generatedUserId;
 
@@ -278,7 +275,7 @@
 
                 if (error) {
                     console.error("Supabase Save Error:", error);
-                    alert("Failed to save profile data.");
+                    alert("Failed to save profile data. Error: " + error.message);
                     return;
                 }
                 
