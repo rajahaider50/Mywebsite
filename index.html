@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vs Vote - Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .app-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .btn-social {
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+        .btn-social img {
+            width: 20px;
+            margin-right: 10px;
+        }
+        .btn-google {
+            background-color: white;
+            color: #555;
+            border: 1px solid #ddd;
+        }
+        .link-text {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-top: 10px;
+        }
+        .link-text:hover {
+            text-decoration: underline;
+        }
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #aaa;
+            margin: 20px 0;
+        }
+        .separator::before, .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        .separator:not(:empty)::before {
+            margin-right: .5em;
+        }
+        .separator:not(:empty)::after {
+            margin-left: .5em;
+        }
+        .form-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <div class="app-name">vs vote</div>
+
+        <div id="login-form">
+            <h2 class="form-header">Login to your account</h2>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Your Email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Your Password" required>
+            </div>
+            <button class="btn btn-primary" onclick="alert('Login functionality not implemented.')">Login</button>
+            <a href="#" class="link-text" onclick="alert('Forgot password functionality not implemented.')">Forgot password?</a>
+
+            <div class="separator">OR</div>
+
+            <button class="btn btn-social btn-google" onclick="signInWithGoogle()">
+                <img src="https://www.google.com/favicon.ico" alt="Google icon">
+                Sign in with Google
+            </button>
+            <a href="#" class="link-text" onclick="showSignupForm()">Don't have an account? Sign up</a>
+        </div>
+
+        <div id="signup-form" style="display:none;">
+            <h2 class="form-header">Create a new account</h2>
+            <div class="input-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Your Full Name" required>
+            </div>
+            <div class="input-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" placeholder="Your Email" required>
+            </div>
+            <div class="input-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Choose a password" required>
+            </div>
+            <button class="btn btn-primary" onclick="alert('Sign up functionality not implemented.')">Sign Up</button>
+            <a href="#" class="link-text" onclick="showLoginForm()">Already have an account? Login</a>
+        </div>
+        
+        <div id="profile-form" style="display:none;">
+            <h2 class="form-header">Complete your profile</h2>
+            <div class="input-group">
+                <label for="profile-username">Username</label>
+                <input type="text" id="profile-username" placeholder="Choose a username" required>
+            </div>
+            <div class="input-group">
+                <label for="profile-phone">Phone Number</label>
+                <input type="tel" id="profile-phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="input-group">
+                <label for="profile-referral">Referral Code</label>
+                <input type="text" id="profile-referral" placeholder="Enter referral code (if any)">
+            </div>
+            <div class="input-group">
+                <label for="user-id">Your 10-Digit ID</label>
+                <input type="text" id="user-id" placeholder="ID will be generated" readonly>
+            </div>
+            <button class="btn btn-primary" onclick="saveUserProfile()">Save</button>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCeuM91kNEzB8dby76QSxCfpHgwWUCu9B4",
+            authDomain: "vs-vote-4c319.firebaseapp.com",
+            databaseURL: "https://vs-vote-4c319-default-rtdb.firebaseio.com",
+            projectId: "vs-vote-4c319",
+            storageBucket: "vs-vote-4c319.firebasestorage.app",
+            messagingSenderId: "472244917714",
+            appId: "1:472244917714:web:549e48df877db06916240b",
+            measurementId: "G-R83569X91N"
+        };
+        
+        // Your Supabase Configuration (Replace with your own)
+        const supabaseConfig = {
+            url: "YOUR_SUPABASE_URL",
+            anonKey: "YOUR_SUPABASE_ANON_KEY"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const googleProvider = new firebase.auth.GoogleAuthProvider();
+        const supabase = supabase.createClient(supabaseConfig.url, supabaseConfig.anonKey);
+        
+        let generatedUserId;
+
+        function showSignupForm() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+        }
+
+        function showLoginForm() {
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+        
+        async function signInWithGoogle() {
+            try {
+                const result = await auth.signInWithPopup(googleProvider);
+                handleSocialSignIn(result.user);
+            } catch (error) {
+                console.error("Google Sign-In Error:", error);
+                alert("An error occurred during Google sign-in. Please try again.");
+            }
+        }
+        
+        function handleSocialSignIn(user) {
+            alert("Sign up successful! Please complete your profile.");
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('profile-form').style.display = 'block';
+            generatedUserId = generateTenDigitId();
+            document.getElementById('user-id').value = generatedUserId;
+        }
+
+        async function saveUserProfile() {
+            const user = auth.currentUser;
+            const username = document.getElementById('profile-username').value;
+            const phoneNumber = document.getElementById('profile-phone').value;
+            const referralCode = document.getElementById('profile-referral').value;
+            
+            if (!user) {
+                alert("Please sign in first.");
+                return;
+            }
+            
+            if (!username || !phoneNumber) {
+                alert("Username and Phone Number are required.");
+                return;
+            }
+            
+            try {
+                const { data, error } = await supabase
+                    .from('users')
+                    .insert([
+                        { 
+                            id: user.uid,
+                            username: username,
+                            email: user.email,
+                            phone_number: phoneNumber,
+                            user_id: generatedUserId,
+                            referral_code: referralCode
+                        }
+                    ]);
+
+                if (error) {
+                    console.error("Supabase Save Error:", error);
+                    alert("Failed to save profile data.");
+                    return;
+                }
+                
+                alert("Profile saved successfully! You are now logged in.");
+                redirectToHomePage();
+
+            } catch (error) {
+                console.error("Unexpected error:", error);
+                alert("An unexpected error occurred. Please try again.");
+            }
+        }
+        
+        function generateTenDigitId() {
+            return Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        }
+
+        function redirectToHomePage() {
+            alert("Redirecting to Home Page...");
+            window.location.href = "home.html";
+        }
+    </script>
+</body>
+</html>
